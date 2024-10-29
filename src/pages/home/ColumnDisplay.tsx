@@ -2,6 +2,7 @@ import React from 'react'
 import { DisplayType } from '.';
 import { Grid } from 'semantic-ui-react';
 import {Card} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 interface DisplayData{
@@ -37,7 +38,11 @@ export const ColumnDisplay=(props:Props)=>{
 
        <Grid.Column key={displayData.id}>
            <Card.Group>
+            <Link  to={`/${
+             displayType === DisplayType.Movies ? "movie":"tvshow"
 
+            }/${displayData.id}}`}
+            >   
             <Card 
             fluid 
             image={`https://image.tmdb.org/t/p/original/${displayData.poster_path}`} 
@@ -48,8 +53,9 @@ export const ColumnDisplay=(props:Props)=>{
             meta={`Release Date:${displayData.release_date}|Rating:${displayData.vote_average}`} 
             description={displayData.overview.slice(0,350)+"..."} 
             />
+            </Link>
            </Card.Group>
-
+           
 
        </Grid.Column>
 
