@@ -6,6 +6,8 @@ import { fetchMovieDetails } from "./query";
 import {Grid} from "semantic-ui-react";
 import {Header} from "semantic-ui-react";
 import {Image} from "semantic-ui-react";
+import {List} from "semantic-ui-react";
+import {Label} from "semantic-ui-react";
 export const Movie=()=>{
     const {id}=useParams<string>();
 
@@ -50,6 +52,65 @@ if(isLoading){
                    />
                         
                     </div>
+
+                   </Grid.Column>
+
+                   <Grid.Column width={10}>
+                   <List>
+                    <List.Item>
+                      <List.Header>Is The Movie For Adults:</List.Header>
+                      {data.adult?"Yes":"No"}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Budget:</List.Header>
+                      {data.budget}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Genres:</List.Header>
+                      {data.genres.map((genre:any)=><Label key={genre.id}>{genre.name}</Label>)}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>IMDB ID:</List.Header>
+                   {data.imdb_id}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Popularity</List.Header>
+  
+                      {data.popularity}
+                    </List.Item> 
+                    <List.Item>
+                      <List.Header>Production Companies</List.Header>
+                    {data.production_companies
+                    .map((company:any)=>company.name)
+                    .join(", ")
+                    
+                    }
+                      
+                    </List.Item>
+
+                    <List.Item>
+                      <List.Header>Release Date:</List.Header>
+                   {data.release_date}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Revenue:</List.Header>
+                   {data.revenue}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Runtime</List.Header>
+                   {data.runtime}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Vote Average</List.Header>
+                   {data.vote_average}
+                    </List.Item>
+                    <List.Item>
+                      <List.Header>Language:</List.Header>
+                   {data.original_language}
+                    </List.Item>
+
+
+                   </List>
 
                    </Grid.Column>
 

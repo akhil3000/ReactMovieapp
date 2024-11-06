@@ -6,6 +6,7 @@ import { Home } from "./pages/home";
 import { Rated } from "./pages/rated";
 import { Movie } from "./pages/movie";
 import { TvShow } from "./pages/tvshow";
+import { About } from "./pages/about";
 function App() {
   
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/rated" element={<Rated/>}/>
         <Route path="/movie/:id" element={<Movie/>} />
         <Route path="/tvshow/:id" element={<TvShow/>}/>
+        <Route path="/about" element={<About/>}/>
        </Routes>
 
     </Router>
