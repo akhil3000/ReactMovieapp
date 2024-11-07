@@ -27,7 +27,7 @@ interface Props{
 
 export const ColumnDisplay=(props:Props)=>{
    
-    const{data,displayType}=props;
+    var{data,displayType}=props;
     const[rating,setRating]=useState<number>(0);
     const onSuccess=()=>{
          toast.success("Successfully rated!");

@@ -3,7 +3,6 @@ import './App.css'
 import { Navbar } from "./components/navbar";
 import { Auth } from "./pages/auth";
 import { Home } from "./pages/home";
-import { Rated } from "./pages/rated";
 import { Movie } from "./pages/movie";
 import { TvShow } from "./pages/tvshow";
 import { About } from "./pages/about";
@@ -19,7 +18,7 @@ function App() {
 
         <Route path="/" element={<Home/>}/>
         <Route path="/auth" element={<Auth/>}/>
-        <Route path="/rated" element={<Rated/>}/>
+      
         <Route path="/movie/:id" element={<Movie/>} />
         <Route path="/tvshow/:id" element={<TvShow/>}/>
         <Route path="/about" element={<About/>}/>

@@ -6,25 +6,26 @@ import { fetchRatedMovies } from "./query";
 import { fetchRatedTvShows } from "./query";
 import { useQuery } from "@tanstack/react-query";
 import { ColumnDisplay } from "../home/ColumnDisplay";
-
+import {Header} from "semantic-ui-react";
 export const Rated=()=>{
 const[activeTabs,setActiveTabs]=useState<DisplayType>(DisplayType.Movies); 
  
 
-const{data:ratedMovies,isLoading:isLoadingRatedMovies}=useQuery({
+const{data:ratedMovies}=useQuery({
   queryKey:["ratedMovies"],
   queryFn:fetchRatedMovies,
   });  
-  const{data:ratedTvShows,isLoading:isLoadingRatedTvShows}=useQuery({
+  const{data:ratedTvShows}=useQuery({
     queryKey:["ratedTvShows"],
     queryFn:fetchRatedTvShows,
     }); 
+   
 
 
 return (
      <Container style={{marginTop:50}}>
      {" "}
-     <Menu>
+     <Menu pointing secondary>
       <Menu.Item
        name="Movies"
        active={activeTabs===DisplayType.Movies}
@@ -38,32 +39,44 @@ return (
 
      </Menu>
      <Segment>
+      {activeTabs === DisplayType.Movies ? (
+         <div>
 
-     {isLoadingRatedMovies||isLoadingRatedTvShows?(
-    
-    <div>Loading...</div>
-   ):(    
-
-   <div style={{marginTop:20}}>
-    
-      {activeTabs===DisplayType.Movies?(
+          <Header as={"h2"}>
+           Rated Movies
+          </Header>
+          <ColumnDisplay
+          data={ratedMovies.results}
+          displayType={DisplayType.Movies}
         
-        <ColumnDisplay data={ratedMovies.results} displayType={DisplayType.Movies}/>
-           
+          
+          />
+      
+         </div>
 
       ):(
-        <ColumnDisplay data={ratedTvShows.results} displayType={DisplayType.TvShows}       
-        />
+
+        <div>
+
+          <Header as={"h2"}>
+           Rated TV Shows
+          </Header>
+          <ColumnDisplay
+          data={ratedTvShows.results}
+          displayType={DisplayType.TvShows}
+        
           
-
+          />
+           
+        
+         </div>
       )
-
+        
 
       }
-    </div>
-   )}
 
      </Segment>
+     
      </Container>
 )
 }
